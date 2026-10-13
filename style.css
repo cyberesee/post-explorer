@@ -1,0 +1,104 @@
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --text: #1b1f27;
+  --muted: #5d6675;
+  --primary: #2349d8;
+  --primary-dark: #1a38ad;  
+  --error-bg: #fdecec;
+  --error-text: #a31d1d;
+  --border: #dde1e8;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.app {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+h1 { margin: 0 0 0.25rem; font-size: 2rem; }
+.subtitle { margin: 0 0 1.5rem; color: var(--muted); }
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.65rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) { background: var(--primary-dark); }
+button:focus-visible { outline: 3px solid #9db1ff; outline-offset: 2px; }
+button:disabled { opacity: 0.55; cursor: not-allowed; }
+
+#status {
+  margin-top: 1rem;
+  min-height: 1.5rem;
+  color: var(--muted);
+}
+
+#status.loading::before {
+  content: "";
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-right: 0.5rem;
+  vertical-align: -2px;
+  border: 2px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+#status.error {
+  padding: 0.75rem 1rem;
+  background: var(--error-bg);
+  color: var(--error-text);
+  border-radius: 8px;
+}
+
+#retryBtn { margin-top: 0.75rem; background: var(--error-text); }
+#retryBtn:hover:not(:disabled) { background: #7d1515; }
+
+.post-list {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.post {
+  padding: 1.1rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.post h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+  text-transform: capitalize;
+}
+
+.post p { margin: 0; color: var(--muted); }
+.post .post-id { font-size: 0.8rem; color: var(--muted); }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #status.loading::before { animation: none; }
+}
