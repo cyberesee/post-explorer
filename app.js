@@ -6,6 +6,15 @@ const retryBtn = document.querySelector("#retryBtn");
 const statusEl = document.querySelector("#status");
 const postList = document.querySelector("#postList");
 
+function setStatus(message, type = "") {
+  statusEl.textContent = message;
+  statusEl.className = type;   // "", "loading", or "error"
+}
+
+loadBtn.disabled = true;
+postList.textContent = "";
+setStatus("Loading posts...", "loading");
+
 async function loadPosts() {
   const response = await fetch(API_URL);
 
